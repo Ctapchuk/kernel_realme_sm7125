@@ -405,7 +405,7 @@ OBJDUMP		= $(CCACHE) llvm-objdump
 READELF		= $(CCACHE) llvm-readelf
 STRIP		= $(CCACHE) llvm-strip
 else
-REAL_CC		= $(CCACHE) $(CROSS_COMPILE)gcc
+CC		= $(CCACHE) $(CROSS_COMPILE)gcc
 LD		= $(CCACHE) $(CROSS_COMPILE)ld
 LDGOLD		= $(CCACHE) $(CROSS_COMPILE)ld.gold
 AR		= $(CCACHE) $(CROSS_COMPILE)ar
@@ -422,10 +422,6 @@ DEPMOD		= depmod
 PERL		= perl
 PYTHON		= python
 CHECK		= sparse
-
-# Use the wrapper for the compiler.  This wrapper scans for new
-# warnings and causes the build to stop upon encountering them
-CC		= $(PYTHON) $(srctree)/scripts/gcc-wrapper.py $(REAL_CC)
 
 CHECKFLAGS     := -D__linux__ -Dlinux -D__STDC__ -Dunix -D__unix__ \
 		  -Wbitwise -Wno-return-void $(CF)
